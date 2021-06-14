@@ -1,12 +1,13 @@
 var readlineSync = require("readline-sync");
+const chalk = require('chalk');
 
 var que=readlineSync.question;
 
 var score = "0";
 
-var userName = readlineSync.question("Enter your name =\n")
-console.log("Welcome " + userName + " let's play game ...")
-console.log("How much you know MARVEL HEROES ")
+var userName = readlineSync.question(chalk.blue('Enter your name =\n'))
+console.log(chalk.green('Welcome ') + chalk.bold.blueBright(userName) + chalk.green(' lets play game ...'))
+console.log(chalk.magentaBright('How much you know MARVEL HEROES '))
 console.log("------------------------------------------------");
 
 
@@ -42,22 +43,22 @@ var queSeven ={
 var questionList = [queOne, queTwo, queThree, queFour, queFive,queSix, queSeven]
 
 
-function quize(question, answer){
+function quiz(question, answer){
   for(var i=0; i<questionList.length; i++){
     var currentQuestion = questionList[i]
-    var userAnswer = que(currentQuestion.question + "\n")
+    var userAnswer = que(chalk.yellowBright(currentQuestion.question) + "\n")
     if(userAnswer === currentQuestion.answer){
-      console.log("Right !!!")
+      console.log(chalk.greenBright('Right !!!'))
       score++;
     } else {
-      console.log("Wrong !!!")
+      console.log(chalk.redBright('Wrong !!!'))
     }
     console.log("------------------------------------------------");
   }
-  console.log(userName +" your total score is  " + score)
+  console.log(chalk.green(userName) +chalk.italic.green(' your total score is  ') + chalk.blueBright(score))
 
   if(score >=1){
-    console.log(userName +" have break previous high score")
+    console.log(chalk.blueBright(userName) +chalk.italic.yellowBright(' have break previous high score'))
     console.log("------------------------------------------------")
 
     console.log("High Score Board")
@@ -65,9 +66,9 @@ function quize(question, answer){
     console.log("Omkar |  5")
     console.log("Rajan |  6")
     console.log("------------------------------------------------")
-    console.log("Send me Screen Shot to update high score")
+    console.log(chalk.bgMagenta('Send me Screen Shot to update high score'))
 
   }
 }
 
-quize();
+quiz();
